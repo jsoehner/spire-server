@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin-password
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+      - ./persistence/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  spire-server-1:
+    image: ghcr.io/spiffe/spire-server:1.10.1
+    restart: always
+    command: ["-config", "/opt/spire/conf/server/server.conf"]
+    depends_on:
+      - postgres
+    volumes:
+      - ./server1/server.conf:/opt/spire/conf/server/server.conf
+      - ./persistence/server1:/opt/spire/data/server
+
+  spire-server-2:
+    image: ghcr.io/spiffe/spire-server:1.10.1
+    restart: always
+    command: ["-config", "/opt/spire/conf/server/server.conf"]
+    depends_on:
+      - postgres
+    volumes:
+      - ./server2/server.conf:/opt/spire/conf/server/server.conf
+      - ./persistence/server2:/opt/spire/data/server
+
+  load-balancer:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"     # HTTP/2 Entry
+      - "8081:8081" # Direct TCP Entry
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - spire-server-1
+      - spire-server-2
+  spire-agent:
+    image: ghcr.io/spiffe/spire-agent:1.10.1
+    restart: always
+    depends_on:
+      - load-balancer
+    volumes:
+      - ./agent/agent.conf:/opt/spire/conf/agent/agent.conf
+      - ./agent/bootstrap.crt:/opt/spire/conf/agent/bootstrap.crt
+      - ./persistence/agent:/opt/spire/data/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: ["-config", "/opt/spire/conf/agent/agent.conf"]
+    pid: "host"
+        
