@@ -2,7 +2,7 @@
 
 # --- Configuration ---
 SETUP_SCRIPT="setup_demo_v9.py"
-AGENT_SCRIPT="add_agent-v3.py"
+AGENT_SCRIPT="add_agent-v4.py"
 SETUP_DIR="spire_setup"
 
 # --- Functions ---
