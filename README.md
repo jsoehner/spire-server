@@ -56,3 +56,14 @@ Check logs: docker compose logs -f spire-agent
    svid_ttl:     2 minutes (Renew ~1 min)
 ==========================================
 Streaming logs now (Press Ctrl+C to exit)...
+
+To stop the container, change to the spire_setup directory and issue docker compose down.
+(spire2) ➜  spire-server git:(main) ✗ cd spire_setup 
+(spire2) ➜  spire_setup git:(main) ✗ docker compose down                                                                   
+[+] down 6/6
+ ✔ Container spire_setup-spire-agent-1    Removed                                                                                                                                                                                             0.1s
+ ✔ Container spire_setup-load-balancer-1  Removed                                                                                                                                                                                             0.2s
+ ✔ Container spire_setup-spire-server-1-1 Removed                                                                                                                                                                                             0.1s
+ ✔ Container spire_setup-spire-server-2-1 Removed                                                                                                                                                                                             0.2s
+ ✔ Container spire_setup-postgres-1       Removed                                                                                                                                                                                             0.1s
+ ✔ Network spire_setup_default            Removed
