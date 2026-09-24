@@ -1,0 +1,7 @@
+[allowlist]
+description = "Allowlist for test fixtures, certificates, and demo mock secrets"
+paths = [
+  '''(?i)spire_setup/''',
+  '''(?i)tests?/''',
+  '''(?i)certs/'''
+]
