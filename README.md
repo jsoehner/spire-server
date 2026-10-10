@@ -67,3 +67,7 @@ To stop the container, change to the spire_setup directory and issue docker comp
  ✔ Container spire_setup-spire-server-2-1 Removed                                                                                                                                                                                             0.2s
  ✔ Container spire_setup-postgres-1       Removed                                                                                                                                                                                             0.1s
  ✔ Network spire_setup_default            Removed
+
+
+## 🛡️ Security & Cryptographic Posture
+This project tracks Software & Cryptographic Bill of Materials (SBOM & CBOM) and Post-Quantum Cryptography (PQC) readiness. See the latest [Cryptographic Audit & PQC Migration Report](docs/security/CRYPTOGRAPHIC_AUDIT.md).
