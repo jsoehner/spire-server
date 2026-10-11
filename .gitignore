@@ -1,0 +1,6 @@
+# Generated BOM artifacts
+oss/
+
+# Python / Local BOM Artifacts
+__pycache__/
+*.pyc
