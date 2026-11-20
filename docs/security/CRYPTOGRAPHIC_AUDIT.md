@@ -33,8 +33,8 @@
 
 | Component Name | Primitive | Key Length | Quantum Resistance Assessment | Provenance / Location(s) |
 |---|---|---|---|---|
-| `SHA-256` | hash | 256 | Quantum-Resistant (Grover's proof) | First-Party Code (SAST/AST)<br>`spire_setup/persistence/db/pg_hba.conf:100` |
 | `X.509-Certificate` | certificate | X.509 | Review key length for Grover resistance | First-Party Code (SAST/AST)<br>`spire_setup/agent/bootstrap.crt:1`<br>`spire_setup/agent/bootstrap.crt:14` |
+| `SHA-256` | hash | 256 | Quantum-Resistant (Grover's proof) | First-Party Code (SAST/AST)<br>`spire_setup/persistence/db/pg_hba.conf:100` |
 
 ### ⚛️ Post-Quantum Cryptography (PQC) Modernization Roadmap
 
